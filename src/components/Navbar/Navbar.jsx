@@ -15,8 +15,8 @@ const Navbar = () => {
       <div className="max-w-5xl mx-auto px-4 bg-[#2563EB] bg-opacity-65 md:rounded-full">
         <div className="flex justify-between items-center py-4 md:py-4 md:mt-5 md:justify-center">
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center justify-center space-x-4 font-extrabold">
-            {['HOME', 'MEDIA', 'GAMEPLAY', 'COLONY TOKEN', 'MARKETPLACE', 'LEADERBOARD'].map((item, index) => (
+          <div className="hidden md:flex items-center justify-center space-x-12 font-extrabold">
+            {['HOME', 'MEDIA', 'GAMEPLAY', 'LEADERBOARD', 'SHOP'].map((item, index) => (
               <a href="#" key={index} className="py-2 px-3 text-white font-extrabold hover:bg-white hover:text-black hover:rounded-lg active:bg-white active:text-black">
                 {item}
               </a>
