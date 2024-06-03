@@ -1,4 +1,3 @@
-// src/components/landingpage/MediaCarousel.jsx
 import React, { useState } from 'react';
 import YouTube from 'react-youtube';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';

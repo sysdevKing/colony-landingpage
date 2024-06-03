@@ -10,6 +10,11 @@ const Navbar = () => {
     setIsOpen(prevIsOpen => !prevIsOpen);
   };
 
+  const handleScroll = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    setIsOpen(false);
+  };
+
   return (
     <nav className="fixed inset-x-0 top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 bg-[#2563EB] bg-opacity-65 md:rounded-full">
@@ -17,7 +22,15 @@ const Navbar = () => {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center justify-center space-x-12 font-extrabold">
             {['HOME', 'MEDIA', 'GAMEPLAY', 'LEADERBOARD', 'SHOP'].map((item, index) => (
-              <a href="#" key={index} className="py-2 px-3 text-white font-extrabold hover:bg-white hover:text-black hover:rounded-lg active:bg-white active:text-black">
+              <a
+                href={`#${item.toLowerCase()}`}
+                key={index}
+                className="py-2 px-3 text-white font-extrabold hover:bg-white hover:text-black hover:rounded-lg active:bg-white active:text-black"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll(item.toLowerCase());
+                }}
+              >
                 {item}
               </a>
             ))}
@@ -44,8 +57,16 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faTimes} className="h-8 w-8" />
           </button>
         </div>
-        {['MAIN', 'MEDIA', 'CHARACTERS', 'GAMEPLAY', 'FLERO TOKEN', 'WEBSHOP', 'STAKING'].map((item, index) => (
-          <a href="#" key={index} className="block py-3 px-6 text-left text-white font-extrabold hover:bg-blue-800">
+        {['HOME', 'MEDIA', 'GAMEPLAY', 'LEADERBOARD', 'SHOP'].map((item, index) => (
+          <a
+            href={`#${item.toLowerCase()}`}
+            key={index}
+            className="block py-3 px-6 text-left text-white font-extrabold hover:bg-blue-800"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll(item.toLowerCase());
+            }}
+          >
             {item}
           </a>
         ))}

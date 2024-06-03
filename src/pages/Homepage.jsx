@@ -4,6 +4,7 @@ import Rightbar from '../components/Rightbar/Rightbar';
 import Hero from '../components/landingpage/Hero';
 import Media from '../components/landingpage/Media';
 import Gameplay from '../components/landingpage/Gameplay';
+import Leaderboard from '../components/landingpage/Leaderboard'
 import './style.css'; 
 
 const Homepage = () => {
@@ -20,6 +21,7 @@ const Homepage = () => {
         <Hero />
         <Media />
         <Gameplay />
+        <Leaderboard />
       </div>
     </div>
   );
