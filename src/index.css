@@ -1,3 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Scrollbar for Webkit Browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #2563EB;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+  }
+  
+  /* Custom Scrollbar for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2563EB #f1f1f1;
+  }
+  
+  /* Custom Scrollbar for Edge and Internet Explorer */
+  body {
+    -ms-overflow-style: scrollbar;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #2563EB;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+  }
+  
+
+  @font-face {
+    font-family: 'Colony';
+    src: url('/public/fonts/Quantum.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Menggunakan font Colony di body atau elemen tertentu */
+  body {
+    font-family: 'Colony', sans-serif;
+  }
+  
+  /* Contoh penggunaan font pada elemen tertentu */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Colony', sans-serif;
+  }
+  

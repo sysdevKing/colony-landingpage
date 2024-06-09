@@ -9,3 +9,8 @@
     z-index: -1; /* Pastikan video berada di belakang elemen lain */
   }
   
+  /* body, html {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  } */

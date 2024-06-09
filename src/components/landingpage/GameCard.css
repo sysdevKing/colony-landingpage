@@ -1,0 +1,56 @@
+.game-card {
+  position: relative;
+  background-color: #1a202c;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+}
+
+.game-card-content {
+  z-index: 10;
+  flex: 1;
+}
+
+.game-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.game-card-description {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.game-card-image-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 35%;
+  z-index: 5;
+  overflow: hidden;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.game-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.game-card:hover .game-card-image {
+  opacity: 1;
+}
