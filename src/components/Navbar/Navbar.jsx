@@ -1,87 +1,89 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import React, { useState, useEffect } from 'react';
+import { FaBars, FaTimes, FaDiscord } from 'react-icons/fa';
+import logo from '/public/images/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(prevIsOpen => !prevIsOpen);
+    setIsOpen(!isOpen);
   };
 
-  const handleScroll = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    setActiveItem(id);
+  const handleScrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
     setIsOpen(false);
   };
 
-  const menuItems = ['HOME', 'BUILD', 'CONQUER', 'REWARDS', 'LEADERBOARD'];
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50">
-      <div className="max-w-5xl mx-auto px-4 bg-[#2563EB] bg-opacity-65 md:rounded-full">
-        <div className="flex justify-between items-center py-2 md:py-4 md:mt-5 md:justify-center">
-          {/* Hamburger Icon for Mobile */}
-          <div className="md:hidden flex items-center">
-            <button onClick={toggleMenu} className="text-white hover:bg-blue-800 rounded">
-              <FontAwesomeIcon icon={isOpen ? faTimes : faBars} className="h-6 w-6" />
-            </button>
-          </div>
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center justify-center space-x-12 font-extrabold">
-            {menuItems.map((item, index) => (
-              <a
-                href={`#${item.toLowerCase()}`}
-                key={index}
-                className={`py-2 px-3 text-white font-extrabold hover:bg-white hover:text-black hover:rounded-lg ${activeItem === item.toLowerCase() ? 'bg-[#6698FF] text-black rounded-lg' : ''}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleScroll(item.toLowerCase());
-                }}
-              >
-                {item}
+    <div>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-black border-b-4 border-[#344afb]' : 'bg-transparent'} text-white flex items-center justify-between px-4 py-5`}>
+        <div className="flex items-center">
+          {isOpen ? (
+            <FaTimes className="text-2xl cursor-pointer hover:text-blue-500" onClick={toggleMenu} />
+          ) : (
+            <FaBars className="text-2xl cursor-pointer hover:text-blue-500" onClick={toggleMenu} />
+          )}
+          <img src={logo} alt="Logo" className="ml-4 w-8 h-8" />
+          <span className="ml-2 text-xl font-bold">
+            <span className="text-[#344afb]">BASE</span> <span className="text-white">COLONY</span>
+          </span>
+        </div>
+        <div className="flex items-center">
+          {/* button */}
+        </div>
+      </nav>
+      <div className={`fixed top-0 inset-y-0 left-0 bg-black text-white w-64 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out z-40`}>
+        <div className="flex flex-col h-full">
+          <div className="flex flex-col items-start px-4 py-20 space-y-2 mt-4">
+            <ul className="mt-4">
+              <li className="mb-2 cursor-pointer hover:bg-blue-500 px-2 py-1 rounded" onClick={() => handleScrollTo('home')}>HOME</li>
+              <li className="mb-2 cursor-pointer hover:bg-blue-500 px-2 py-1 rounded" onClick={() => handleScrollTo('build')}>BUILD</li>
+              <li className="mb-2 cursor-pointer hover:bg-blue-500 px-2 py-1 rounded" onClick={() => handleScrollTo('conquer')}>CONQUER</li>
+              <li className="mb-2 cursor-pointer hover:bg-blue-500 px-2 py-1 rounded" onClick={() => handleScrollTo('rewards')}>REWARDS</li>
+              <li className="mb-2 cursor-pointer hover:bg-blue-500 px-2 py-1 rounded" onClick={() => handleScrollTo('leaderboard')}>LEADERBOARD</li>
+            </ul>
+            <div className="flex space-x-4 mt-auto mb-4 align-center">
+              <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-500">
+                <FaDiscord size="24" />
               </a>
-            ))}
-          </div>
-          {/* Placeholder for Centering Desktop Links */}
-          <div className="hidden md:flex items-center">
-            <div className="w-6"></div>
+              <a href="http://x.com/basecolony" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-500">
+                <svg
+                  fill="white"
+                  className="svgIcon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25px"
+                  height="25px"
+                  viewBox="0 0 564 564"
+                >
+                  <path
+                    d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      {/* Mobile Menu */}
-      <div className={`fixed inset-0 bg-blue-900 bg-opacity-95 z-40 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col md:hidden`}>
-        <div className="w-full flex justify-start p-4">
-          <button onClick={toggleMenu} className="text-white hover:bg-blue-800 p-2 rounded">
-            <FontAwesomeIcon icon={faTimes} className="h-6 w-6" />
-          </button>
-        </div>
-        <div className="flex flex-col items-center space-y-6 mt-6">
-          {menuItems.map((item, index) => (
-            <a
-              href={`#${item.toLowerCase()}`}
-              key={index}
-              className={`block py-3 px-6 text-center text-white font-extrabold hover:bg-blue-800 w-full ${activeItem === item.toLowerCase() ? 'bg-[#6698FF] text-black' : ''}`}
-              onClick={(e) => {
-                e.preventDefault();
-                handleScroll(item.toLowerCase());
-              }}
-            >
-              {item}
-            </a>
-          ))}
-          <div className="flex space-x-6 mt-6">
-            {[faTwitter].map((icon, index) => (
-              <a key={index} href="#" className="text-white hover:text-gray-300 transition-colors duration-300">
-                <FontAwesomeIcon icon={icon} className="w-6 h-6" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </nav>
+    </div>
   );
 };
 

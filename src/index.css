@@ -9,19 +9,19 @@
   }
   
   ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #A7C4FE;
   }
   
   ::-webkit-scrollbar-thumb {
     background-color: #2563EB;
     border-radius: 10px;
-    border: 3px solid #f1f1f1;
+    border: 3px solid #A7C4FE;
   }
   
   /* Custom Scrollbar for Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #2563EB #f1f1f1;
+    scrollbar-color: #2563EB black;
   }
   
   /* Custom Scrollbar for Edge and Internet Explorer */
