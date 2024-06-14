@@ -24,7 +24,7 @@ const upcoming = {
 
 const Leaderboard = () => {
   return (
-    <div className="max-w-5xl mx-auto min-h-full pb-36" id="leaderboard">
+    <div className="max-w-6xl mx-auto min-h-full pb-36" id="leaderboard">
       {/* Winner Section */}
       <section className="mb-12 relative rounded-lg shadow-lg">
         <div
